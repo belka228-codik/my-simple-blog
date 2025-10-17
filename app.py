@@ -2,7 +2,7 @@ import json
 import os
 from datetime import datetime
 
-from flask import Flask, jsonify, request, render_template, redirect
+from flask import Flask, jsonify, redirect, render_template, request
 
 app = Flask(__name__)
 
@@ -150,10 +150,7 @@ def update_user(user_id):
     return jsonify(user)
 
 
-@app.route(
-        "/api/users/<int:user_id>",
-        methods=["DELETE"]
-)
+@app.route("/api/users/<int:user_id>", methods=["DELETE"])
 def delete_user(user_id):
     if user_id not in users:
         return jsonify({"error": "User not found"}), 404
