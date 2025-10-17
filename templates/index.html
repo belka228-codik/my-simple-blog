@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой Блог</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .post { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .post h2 { margin-top: 0; }
+        .post-meta { color: #666; font-size: 0.9em; }
+        .btn { display: inline-block; padding: 8px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 3px; margin: 5px; }
+        .btn:hover { background: #0056b3; }
+        .btn-success { background: #28a745; }
+        .btn-success:hover { background: #1e7e34; }
+    </style>
+</head>
+<body>
+    <h1>Мой Блог</h1>
+
+    <a href="/create" class="btn btn-success">Создать новый пост</a>
+
+    <div class="posts">
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post">
+                <h2><a href="/posts/{{ post.id }}">{{ post.title }}</a></h2>
+                <div class="post-meta">
+                    Автор: {{ post.authorId }} |
+                    Создан: {{ post.createdAt[:16].replace('T', ' ') }}
+                </div>
+                <p>{{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}</p>
+                <a href="/posts/{{ post.id }}" class="btn">Читать далее</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>Пока нет постов. <a href="/create">Создайте первый!</a></p>
+        {% endif %}
+    </div>
+
+    <hr>
+    <div>
+        <h3>API Endpoints:</h3>
+        <ul>
+            <li><a href="/api/users" target="_blank">GET /api/users</a> - Все пользователи</li>
+            <li><a href="/api/posts" target="_blank">GET /api/posts</a> - Все посты</li>
+            <li><a href="/health" target="_blank">GET /health</a> - Проверка здоровья</li>
+        </ul>
+    </div>
+</body>
+</html>

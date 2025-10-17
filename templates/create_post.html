@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать пост</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 3px; }
+        textarea { height: 200px; resize: vertical; }
+        .btn { display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border: none; border-radius: 3px; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+        .btn-secondary { background: #6c757d; }
+        .btn-secondary:hover { background: #545b62; }
+        small { color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Создать новый пост</h1>
+
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">Заголовок:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Содержание:</label>
+            <textarea id="content" name="content" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="authorId">ID автора:</label>
+            <input type="number" id="authorId" name="authorId" value="1" required>
+            <small>Используйте ID существующего пользователя (по умолчанию 1)</small>
+        </div>
+
+        <button type="submit" class="btn">Создать пост</button>
+        <a href="/" class="btn btn-secondary">Отмена</a>
+    </form>
+</body>
+</html>

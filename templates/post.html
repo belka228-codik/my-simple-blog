@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .post-meta { color: #666; font-size: 0.9em; margin-bottom: 20px; }
+        .btn { display: inline-block; padding: 8px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 3px; margin: 5px; }
+        .btn:hover { background: #0056b3; }
+        .btn-secondary { background: #6c757d; }
+        .btn-secondary:hover { background: #545b62; }
+        .content { line-height: 1.6; white-space: pre-line; }
+    </style>
+</head>
+<body>
+    <a href="/" class="btn">← Назад к списку</a>
+
+    <article>
+        <h1>{{ post.title }}</h1>
+        <div class="post-meta">
+            Автор: {{ post.authorId }} |
+            Создан: {{ post.createdAt[:16].replace('T', ' ') }} |
+            Обновлен: {{ post.updatedAt[:16].replace('T', ' ') }}
+        </div>
+
+        <div class="content">
+            {{ post.content }}
+        </div>
+    </article>
+
+    <div style="margin-top: 30px;">
+        <a href="/" class="btn">На главную</a>
+        <a href="/api/posts/{{ post.id }}" target="_blank" class="btn btn-secondary">JSON версия</a>
+    </div>
+</body>
+</html>
